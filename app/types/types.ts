@@ -2,11 +2,11 @@ export type RootState = {
   page: {
     activeComponent: string;
   };
-  auth: AuthState; 
+  auth: AuthState;
 };
 
 export type AuthState = {
-  authToken: string | null; 
+  authToken: string | null;
   userId: string | null;
 };
 
@@ -15,15 +15,20 @@ export interface MachineType {
   machine_type: string;
 }
 
-export interface Machines {
+export interface MachinesType {
   id: number;
   name: string,
   sector: string,
   machine_type_selected: string;
 }
 
+export interface SensorsType {
+  id: number;
+  sensor_type: string,
+}
+
 export interface AppState {
-  machineTypes: string; 
-  machines: string; 
-  
+  machineTypes: MachineType[];
+  machines: MachinesType[];
+  sensors: SensorsType[];
 }
