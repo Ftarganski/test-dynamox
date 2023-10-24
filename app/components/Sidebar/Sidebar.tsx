@@ -5,11 +5,16 @@ import { setActiveComponent } from "../../../lib/redux/slices/pageSlice";
 import { clearAuthToken } from "../../../lib/redux/slices/authSlice";
 
 import Link from "next/link";
-import { RxGear, RxDashboard, RxPerson,} from "react-icons/rx";
+import { RxDashboard, RxGear, RxPerson } from "react-icons/rx";
 import { MdSensors } from "react-icons/md";
 import { FiLogOut } from "react-icons/fi";
 
-const Sidebar = () => {
+interface SidebarProps {
+  handleComponentChange: (componentName: string) => void;
+  setShowDashboard: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Sidebar = ({ handleComponentChange, setShowDashboard }: SidebarProps) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -18,15 +23,11 @@ const Sidebar = () => {
     window.location.href = "/";
   };
 
-  const handleComponentChange = (componentName: string) => {
-    dispatch(setActiveComponent(componentName));
-  };
-
   return (
     <div className="flex">
       <div className="fixed w-20 h-screen p-4 bg-white border-r-[1px] flex flex-col justify-between">
         <div className="flex flex-col items-center">
-          <Link href="/" onClick={() => handleComponentChange("Daschboard")}>
+          <Link href="/" onClick={() => handleComponentChange("Dashboard")}>
             <div className="bg-blue-500 text-white p-3 rounded-lg inline-block">
               <RxDashboard size={20} />
             </div>
